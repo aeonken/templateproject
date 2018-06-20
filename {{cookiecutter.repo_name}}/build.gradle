@@ -1,0 +1,39 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+apply plugin: 'kotlin'
+
+buildscript {
+
+    ext.min_sdk_version = {{ cookiecutter.android_min_sdk_version }}
+    ext.compile_sdk_version = {{ cookiecutter.android_compile_sdk_version }}
+    ext.target_sdk_version = {{ cookiecutter.android_target_sdk_version }}
+
+    ext.kotlin_version = '{{ cookiecutter.kotlin_version }}'
+    ext.kotlin_compiler_version = '{{ cookiecutter.kotlin_compiler_version }}'
+    ext.build_tool_version = '{{ cookiecutter.build_tool_version }}'
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$build_tool_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

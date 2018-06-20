@@ -1,0 +1,25 @@
+{
+    "name":"my_kotlin_project",
+    "repo_name":"{{ cookiecutter.name | lower | replace(' ', '') }}",
+    "company_name":"my_company",
+    "package_name": "com.{{ cookiecutter.company_name | lower | replace(' ', '') }}.{{ cookiecutter.repo_name | replace(' ', '')}}",
+    "package_path":"java/{{ cookiecutter.package_name | replace('.', '/') }}",
+    "group": "{{ cookiecutter.package_name }}",
+    "kotlin_version": "1.2.50",
+    "kotlin_compiler_version": "",
+    "version_code":1,
+    "version_name":"1.0.0",
+    "gradle_version": "3.0.0",
+    "android_min_sdk_version": 21,
+    "android_compile_sdk_version": 28,
+    "android_target_sdk_version": 26,
+    "build_tool_version": "3.1.2",
+    "_copy_without_render": [
+        "gradlew",
+        "gradlew.bat",
+        "settings.gradle",
+        "gradle.properties",
+        "gradle/wrapper/gradle-wrapper.jar",
+        "gradle/wrapper/gradle-wrapper.properties"
+    ]
+}

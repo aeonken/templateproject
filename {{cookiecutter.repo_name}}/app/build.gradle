@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion rootProject.compile_sdk_version
+    defaultConfig {
+        applicationId "{{ cookiecutter.package_name }}"
+        minSdkVersion rootProject.min_sdk_version
+        targetSdkVersion rootProject.target_sdk_version
+        versionCode {{ cookiecutter.version_code }}
+        versionName "{{ cookiecutter.version_name }}"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        development {
+            resValue "string", "url", "http://development.app.com/"
+            debuggable true
+        }
+        testing {
+            resValue "string", "url", "http://testing.app.com/"
+            debuggable true
+        }
+        staging {
+            resValue "string", "url", "http://staging.app.com/"
+        }
+        release {
+            resValue "string", "url", "http://release.app.com/"
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+
+    configurations.all {
+
+    }
+
+    kapt {
+        generateStubs = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    maven { url 'https://jitpack.io' }
+}
